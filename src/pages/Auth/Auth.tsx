@@ -5,11 +5,10 @@ import { minLength, required } from "../../utils/validate";
 import { AuthForm } from "../../components/UIkit/AuthForm/AuthForm";
 import { InputText } from "../../components/UIkit/Fields/InputText/InputText";
 import { DefaultButton } from "../../components/UIkit/Buttons/DefaultButtons/DefaultButtons";
-import { ButtonTypes, DefaultUrls } from "../../models/enums";
+import { ButtonTypes } from "../../models/enums";
 import { useSelector } from "react-redux";
 import { startAuth } from "../../redux/userSlice";
 import { LoginData } from "../../models/types";
-import { Navigate, useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth/useAuth";
 import './style.scss';
 
@@ -20,8 +19,7 @@ export const Auth = () => {
     formState: { errors },
   } = useForm<LoginData>();
   const dispatch = useAppDispatch();
-	const navigate = useNavigate();
-	const {token, onLogin} = useAuth();
+	const {onLogin} = useAuth();
   const data = useSelector((state: RootState) => state.user.data);
 
   useEffect(() => {
@@ -29,8 +27,8 @@ export const Auth = () => {
 			onLogin(data.token);
 		}
   }, [data?.token]);
-	console.log(token, '-----', data?.token,'=========')
-  const onSubmit: SubmitHandler<LoginData> = (credential: LoginData) => {
+
+	const onSubmit: SubmitHandler<LoginData> = (credential: LoginData) => {
     dispatch(startAuth(credential));
   };
 

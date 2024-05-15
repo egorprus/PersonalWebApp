@@ -1,5 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "../axios/axios";
+import { createSlice } from "@reduxjs/toolkit";
 import { FetchStatus } from "../models/enums";
 
 // export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
