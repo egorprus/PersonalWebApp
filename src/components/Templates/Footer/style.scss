@@ -1,0 +1,15 @@
+.footer {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 10px;
+	box-shadow: 0 -5px 5px -5px rgba(0, 0, 0, .5);
+}
+.socials {
+	display: flex;
+	&__item {
+			& + & {
+					margin-left: 10px;
+			}
+	}
+}

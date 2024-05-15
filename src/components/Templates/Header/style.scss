@@ -1,0 +1,30 @@
+.header {
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px;
+	box-shadow: 2px 2px 5px rgba(154, 147, 140, 0.5), 1px 1px 5px rgb(255, 255, 255)
+}
+.profile {
+	display: flex;
+	align-items: center;
+	padding: 15px 20px;
+	border-left: 2px solid #28ce97;
+	&__link {
+			color: #000000;
+			padding: 5px;
+			border: 1px solid #ffffff;
+			border-radius: 5px;
+			& + & {
+					margin-left: 10px;
+			}
+			&:hover {
+					border-color: #442422;
+			}
+	}
+	&__delimiter {
+			margin-left: 5px;
+			margin-right: 5px;
+	}
+}

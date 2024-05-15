@@ -1,0 +1,64 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 100vw;
+  min-height: 100vh;
+	.section {
+		flex: 1;
+		align-self: stretch;
+	}
+	.main {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		padding-top: 10px;
+		padding-bottom: 20px;
+	}
+	.container {
+		max-width: 1200px;
+		width: 100%;
+	}
+	.nav {
+		display: flex;
+		justify-content: center;
+		padding: 10px 0 20px;
+		&-list {
+			display: flex;
+			&__item {
+				& + & {
+					margin-left: 20px;
+				}
+			}
+			&__btn {
+				color: #46a481;
+				transition: .3s linear;
+				padding: 5px 10px;
+				&:hover {
+					box-shadow: 200px 0 0 0 #46a481 inset;
+					color: #ffffff;
+				}
+			}
+		}
+	}
+
+	.header__logo {
+		animation-duration: .5s;
+		animation-name: slidein;
+	}
+
+	@keyframes slidein {
+		from {
+			margin-left: 100%;
+			width: 300%;
+		}
+
+		to {
+			margin-left: 0%;
+			width: 100%;
+		}
+	}
+}
