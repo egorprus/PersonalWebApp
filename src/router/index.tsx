@@ -3,7 +3,6 @@ import App from "../App";
 import { DefaultUrls } from "../models/enums";
 import { Auth } from "../pages/Auth/Auth";
 import { Registration } from "../pages/Registration/Registration";
-import { Protected } from "../components/Protected/Protected";
 import { Main } from "../pages/Main/Main";
 import { Player } from "../pages/Player/Player";
 
@@ -14,19 +13,11 @@ export const router = createBrowserRouter([
     children: [
       {
         path: DefaultUrls.auth,
-        element: (
-          <Protected>
-            <Auth />
-          </Protected>
-        ),
+        element: <Auth />,
       },
       {
         path: DefaultUrls.registration,
-        element: (
-          <Protected>
-            <Registration />
-          </Protected>
-        ),
+        element: <Registration />,
       },
       {
         path: DefaultUrls.main,
@@ -34,8 +25,8 @@ export const router = createBrowserRouter([
       },
     ],
   },
-	{
-		path: DefaultUrls.player,
-		element: <Player />,
-	}
+  {
+    path: DefaultUrls.player,
+    element: <Player />,
+  },
 ]);

@@ -4,6 +4,5 @@ import { succesFetchPosts } from "../postSlice";
 
 export function* fetchPostSaga() {
     const { data } = yield call(axios.get, "/posts");
-    console.log(data, "posts");
     yield put(succesFetchPosts(data));
 }

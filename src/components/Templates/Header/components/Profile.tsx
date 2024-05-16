@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../redux/store";
-import { FetchStatus } from "../../../../models/enums";
+import { UserStatus } from "../../../../models/enums";
 import { ActiveProfile } from "./ActiveProfile";
 import { InactiveProfile } from "./InactiveProfile";
 
@@ -12,7 +12,7 @@ export const Profile = ({ onLogout }: Props) => {
 
   return (
     <div className="profile">
-      {user.status === FetchStatus.success ? (
+      {user.status === UserStatus.success ? (
         <ActiveProfile user={user.data} handleClick={onLogout} />
       ) : (
         <InactiveProfile />

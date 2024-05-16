@@ -1,6 +1,6 @@
 import { ReactNode, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logout } from "../../redux/userSlice";
 import { AuthProviderValue } from "../../models/types";
@@ -15,14 +15,10 @@ export const AuthProvider = ({ children }: Props) => {
     localStorage.getItem("token") || ""
   );
   const navigate = useNavigate();
-  const location = useLocation();
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (token) {
-      console.log(location.state?.from.pathname);
-      const origin = location.state?.from.pathname; //|| "/main";
-			console.log(origin,' path--------')
       navigate(DefaultUrls.main);
     } else {
       navigate(DefaultUrls.auth);

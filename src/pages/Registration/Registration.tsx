@@ -3,10 +3,11 @@ import { InputText } from "../../components/UIkit/Fields/InputText/InputText";
 import { AuthForm } from "../../components/UIkit/AuthForm/AuthForm";
 import { DefaultButton } from "../../components/UIkit/Buttons/DefaultButtons/DefaultButtons";
 import { minLength, required } from "../../utils/validate";
-import { ButtonTypes } from "../../models/enums";
-import { useAppDispatch } from "../../redux/store";
-import { startRegistration } from "../../redux/userSlice";
-
+import { ButtonTypes, RequiredFields } from "../../models/enums";
+// import { useAppDispatch } from "../../redux/store";
+// import { startRegistration } from "../../redux/userSlice";
+// import axios from "axios";
+// import axios from "../../axios/axios";
 
 export interface RegistrationData {
 	login: string,
@@ -22,44 +23,44 @@ export const Registration = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<RegistrationData>();
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
 
   const onSubmit: SubmitHandler<RegistrationData> = async (data: RegistrationData) => {
-		console.log(data)
-		dispatch(startRegistration(data));
+		// const fetchData = await axios.post("/register", data);
+		console.log(data);
   };
 
 	return (
     <AuthForm onSubmit={handleSubmit(onSubmit)} title="Регистрация">
       <InputText
         {...FIELDS.login}
-        register={register('login', {
+        register={register(RequiredFields.login, {
           validate: { ...FIELDS.login.validate },
         })}
         errors={errors.login}
       />
       <InputText
         {...FIELDS.fullName}
-        register={register('fullName', {
+        register={register(RequiredFields.fullName, {
           validate: { ...FIELDS.fullName.validate },
         })}
         errors={errors.fullName}
       />
       <InputText
         {...FIELDS.password}
-        register={register('password', {
+        register={register(RequiredFields.password, {
           validate: { ...FIELDS.password.validate },
         })}
         errors={errors.password}
       />
-      <DefaultButton {...FIELDS.signIn} />
+      <DefaultButton {...FIELDS.signIn} type={ButtonTypes.submit} />
     </AuthForm>
   );
 };
 
 const FIELDS = {
   login: {
-    name: "login",
+    name: RequiredFields.login,
     label: "Login",
     validate: {
       min: minLength(3),
@@ -67,7 +68,7 @@ const FIELDS = {
     },
   },
   password: {
-    name: "password",
+    name: RequiredFields.password,
     label: "Password",
     validate: {
       min: minLength(8),
@@ -75,8 +76,8 @@ const FIELDS = {
     },
   },
   fullName: {
-    name: "fullName",
-    label: "full name",
+    name: RequiredFields.fullName,
+    label: "Full name",
     validate: {
       min: minLength(3),
       required: required,

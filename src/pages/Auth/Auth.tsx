@@ -5,11 +5,12 @@ import { minLength, required } from "../../utils/validate";
 import { AuthForm } from "../../components/UIkit/AuthForm/AuthForm";
 import { InputText } from "../../components/UIkit/Fields/InputText/InputText";
 import { DefaultButton } from "../../components/UIkit/Buttons/DefaultButtons/DefaultButtons";
-import { ButtonTypes } from "../../models/enums";
+import { ButtonTypes, RequiredFields } from "../../models/enums";
 import { useSelector } from "react-redux";
 import { startAuth } from "../../redux/userSlice";
 import { LoginData } from "../../models/types";
 import { useAuth } from "../../hooks/useAuth/useAuth";
+import axios from "../../axios/axios";
 import './style.scss';
 
 export const Auth = () => {
@@ -28,7 +29,9 @@ export const Auth = () => {
 		}
   }, [data?.token]);
 
-	const onSubmit: SubmitHandler<LoginData> = (credential: LoginData) => {
+	const onSubmit: SubmitHandler<LoginData> = async (credential: LoginData) => {
+		const fetchData = await axios.post("/login", credential);
+		onLogin(fetchData.data.token);
     dispatch(startAuth(credential));
   };
 
@@ -36,14 +39,14 @@ export const Auth = () => {
     <AuthForm onSubmit={handleSubmit(onSubmit)} title="Авторизация">
       <InputText
         {...FIELDS.login}
-        register={register("login", {
+        register={register(RequiredFields.login, {
           validate: { ...FIELDS.login.validate },
         })}
         errors={errors.login}
       />
       <InputText
         {...FIELDS.password}
-        register={register("password", {
+        register={register(RequiredFields.password, {
           validate: { ...FIELDS.password.validate },
         })}
         errors={errors.password}
@@ -55,7 +58,7 @@ export const Auth = () => {
 
 const FIELDS = {
   login: {
-    name: "login",
+    name: RequiredFields.login,
     label: "Login",
     validate: {
       min: minLength(3),
@@ -63,7 +66,7 @@ const FIELDS = {
     },
   },
   password: {
-    name: "password",
+    name: RequiredFields.password,
     label: "Password",
     validate: {
       min: minLength(3),

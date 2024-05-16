@@ -1,14 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { FetchStatus } from "../models/enums";
+import { UserStatus } from "../models/enums";
 import { UserData } from "../models/types";
 
 interface InitType {
 	data: UserData | null,
-	status: FetchStatus
+	status: UserStatus
 }
 const initialState: InitType = {
   data: null,
-  status: FetchStatus.init,
+  status: UserStatus.notAuth,
 };
 
 const userSlice = createSlice({
@@ -17,20 +17,21 @@ const userSlice = createSlice({
   reducers: {
     logout: (state) => {
       state.data = null;
-      state.status = FetchStatus.loading;
+      state.status = UserStatus.notAuth;
     },
 		startAuth: (state, _) => {
-			state.status = FetchStatus.loading;
+			state.status = UserStatus.loading;
 		},
 		succesAuth: (state, action) => {
 			state.data = action.payload;
-			state.status = FetchStatus.success;
+			state.status = UserStatus.success;
 		},
 		startRegistration: (state, _) => {
-			state.status = FetchStatus.loading;
+			state.status = UserStatus.loading;
 		},
 		failedAuth: (state) => {
-			state.status = FetchStatus.error;
+			state.status = UserStatus.notAuth;
+			state.data = null;
 		}
   },
 });

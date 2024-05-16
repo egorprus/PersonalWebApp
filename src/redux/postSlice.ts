@@ -45,33 +45,7 @@ const postsStore = createSlice({
 			state.posts.items = action.payload;
 			state.posts.status = FetchStatus.success;
 		}
-	},
-  extraReducers: {
-    // [fetchPosts.pending.toString()]: (state) => {
-    //   state.posts.items = [];
-    //   state.posts.status = FetchStatus.loading;
-    // },
-    // [fetchPosts.fulfilled.toString()]: (state, action) => {
-    //   state.posts.items = action.payload;
-    //   state.posts.status = FetchStatus.loading;
-    // },
-    // [fetchPosts.rejected.toString()]: (state) => {
-    //   state.posts.items = [];
-    //   state.posts.status = FetchStatus.error;
-    // },
-    // [createPost.pending.toString()]: (state) => {
-    //   state.posts.items = [];
-    //   state.posts.status = FetchStatus.loading;
-    // },
-    // [createPost.fulfilled.toString()]: (state, action) => {
-    //   state.posts.items = [...state.posts.items, action.payload];
-    //   state.posts.status = FetchStatus.success;
-    // },
-    // [createPost.rejected.toString()]: (state) => {
-    //   state.posts.items = [];
-    //   state.posts.status = FetchStatus.error;
-    // },
-  },
+	}
 });
 
 export const postReducer = postsStore.reducer;

@@ -1,8 +1,14 @@
 export enum FetchStatus {
 	error = 'error',
 	loading = 'loading',
-	success = 'succes',
+	success = 'success',
 	init = 'init',
+}
+
+export enum UserStatus {
+	loading = 'loading',
+	success = 'success',
+	notAuth = 'notAuth',
 }
 
 export enum ButtonTypes {
@@ -27,3 +33,9 @@ export enum TagsListE {
 	audioBooks = 'audioBooks',
 	classicFusion = 'classicFusion'
 };
+
+export enum RequiredFields {
+	login = 'login',
+	fullName = 'fullName',
+	password = 'password'
+}

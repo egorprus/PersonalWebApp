@@ -6,11 +6,13 @@ export type AuthProviderValue = {
 
 export type AuthContextType = AuthProviderValue;
 
+/** Type navigation item */
 export type NavItem = {
 	name: string,
 	path: string,
 }
 
+/** Interface user data */
 export interface UserData {
   _id: string;
   fullName: string;
